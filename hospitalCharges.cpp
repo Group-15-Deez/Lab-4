@@ -26,6 +26,11 @@ int main(){
   cout << endl << "Medication charges ($): ";
   cin >> temper;
   patient.setMedication(temper);
-  cout << "Your total bill is ($): " << patient.calcTotalCharges();
-
+  
+  if(patient.getPatientType() == 'I'){
+    cout << "Your total bill is ($): " << patient.calcTotalCharges(patient.getDays(), patient.getRate, patient.getServices(), patient.getMedication());
+  }
+  else{
+    cout << "Your total bill is ($): " << patient.calcTotalCharges(patient.getServices(), patient.getMedication());
+  }
 }
