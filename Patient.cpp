@@ -1,62 +1,78 @@
-
+#include <iomanip>
 #include "Patient.h"
+using namespace std;
 
-void Patient :: setPatientType(char t)
-{
-    
-    patientType = t;
-    if(patientType != 'I' && patientType != 'O')
-    patientType = 'I';
+bool Patient::validateInput(int in){
+  if(in>=0)
+  return true;
+  else
+  return false;
 }
-void Patient :: setDays(int d)
-{
-    days = 1;
-    if(validateInput(d))
-    days = d;
+
+bool Patient::validateInput(double in){
+  if(in>=0)
+  return true;
+  else
+  return false;
 }
-void Patient :: setRate(double d)
-{
-    rate = 1.0;
-    if(validateInput(d))
-    rate = d;
+bool Patient::validateInput(char inp){
+  if(inp == 'O')
+  return true;
+  else
+  return false;
 }
-void Patient :: setServices(double d)
-{
-    services = 1.0;
-    if(validateInput(d))
-    services = d;   
+
+Patient::Patient() : days{0}, patientType{'I'}, rate{0}, services{0}, medication{0}{}
+
+Patient::Patient(int d, char p, double r, double s, double m) : days{d}, patientType{p}, rate{r},
+services{s}, medication{m}{}
+
+Patient::Patient(char p, double s, double m) : patientType{p}, services{s}, medication{m}{}
+void Patient::setDays(int d){
+  if(validateInput(d))
+  days = d;
 }
-void Patient :: setMedication(double d)
-{
-    medication = 1.0;
-    if(validateInput(d))
-    medication = d;
+
+void Patient::setRate(double r){
+  if(validateInput(r))
+  rate = r;
 }
-char Patient :: getPatientType()
-{
-    return patientType;
+
+void Patient::setServices(double s){
+  if(validateInput(s))
+  services = s;
 }
-int Patient :: getDays()
-{
-    return days;
+
+void Patient::setMedication(double m){
+  if(validateInput(m))
+  medication = m;
 }
-double Patient :: getRate()
-{
-    return rate;
+
+void Patient::setPatientType(char p){
+  if(validateInput(p))
+  patientType = p;
 }
-double Patient :: getServices()
-{
-    return services;
+
+int Patient::getDays(){
+  return days;
 }
-double Patient :: getMedication()
-{
-    return medication;
+
+double Patient::getRate(){
+  return rate;
 }
-double Patient :: calcTotalCharges(double i, double d)
-{
-    return i + d;
+
+double Patient::getServices(){
+  return services;
 }
-double Patient :: calcTotalCharges(int i, double a, double b, double c)
-{
-    return (i * a) + b + c;
+
+double Patient::getMedication(){
+  return medication;
+}
+
+char Patient::getPatientType(){
+  return patientType;
+}
+
+double Patient::calcTotalCharges(){
+  return (days*rate)+medication+services;
 }

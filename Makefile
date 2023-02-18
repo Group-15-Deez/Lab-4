@@ -1,10 +1,9 @@
-default: main.out
+all: main.out
 
-main.out: hospitalCharges.cpp Patient.cpp 
-	g++ -Wall hospitalCharges.cpp Patient.cpp -o main.out
-
-run:
+run: main.out
 	./main.out
 
-clean:
-	rm -f main.out
+main.out: hospitalCharges.cpp Patient.cpp
+	g++ -Wall hospitalCharges.cpp Patient.cpp -o main.out
+
+clean: rm *.out
